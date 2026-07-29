@@ -44,7 +44,7 @@ else:
     gray_rgb = cv2.cvtColor(gray_bgr, cv2.COLOR_BGR2RGB)
     final_rgb = cv2.cvtColor(final, cv2.COLOR_BGR2RGB)
 
-    fig, ax = plt.subplots(2, 3, figsize=(16, 12))
+    fig, ax = plt.subplots(2, 3, figsize=(12, 6))
 
     ax[0,0].imshow(img_rgb)
     ax[0,0].set_title("Original")
@@ -66,11 +66,8 @@ else:
 
     for a in ax.ravel():
         a.axis("off")
-
+        
+    plt.imshow (final)
     plt.tight_layout()
     plt.savefig("Task3_1_Result.jpg")
     plt.show()
-
-
-
-cv2.imwrite("Final_Output.jpg", final)
