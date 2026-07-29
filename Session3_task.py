@@ -67,7 +67,7 @@ else:
     for a in ax.ravel():
         a.axis("off")
         
-    plt.imshow (final)
+    plt.imshow (cv2.cvtColor(final,cv2.COLOR_BGR2RGB))
     plt.tight_layout()
     plt.savefig("Task3_1_Result.jpg")
     plt.show()
