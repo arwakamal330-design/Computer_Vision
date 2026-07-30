@@ -33,7 +33,7 @@ for image,title in zip (images,titles):
 
 # isolate the object ==============================================
 Lower_green = np.array([10,50,50])
-Upper_green = np.array([100,255,255])
+Upper_green = np.array([40,255,255])
 mask = cv2.inRange(hsv,Lower_green,Upper_green)
 bitwise = cv2.bitwise_and(img,img,mask=mask)
 result = cv2.cvtColor(bitwise,cv2.COLOR_RGB2BGR)
@@ -50,3 +50,10 @@ for ax,image,title,cmap in zip (axis,imgs,tits,cmaps):
     ax.axis ('off')
 plt.tight_layout()
 plt.show()
+
+# a] Hue range used: 10:40
+
+# b] these S and V bounds: 
+#    S bounds were used to remove low-saturation (faded) colours
+#    V bounds were used to remove very dark or very bright pixels, improving segmentation accuracy
+# c] No, I didn't need two inRange call
