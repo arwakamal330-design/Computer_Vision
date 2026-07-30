@@ -36,7 +36,7 @@ Lower_green = np.array([10,50,50])
 Upper_green = np.array([40,255,255])
 mask = cv2.inRange(hsv,Lower_green,Upper_green)
 bitwise = cv2.bitwise_and(img,img,mask=mask)
-result = cv2.cvtColor(bitwise,cv2.COLOR_RGB2BGR)
+result = cv2.cvtColor(bitwise,cv2.COLOR_BGR2RGB)
 
 imgs = [bgr,mask,result]
 tits = ['original images','mask','result']
