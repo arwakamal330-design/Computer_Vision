@@ -39,7 +39,7 @@ flip_3 = cv2.flip (img,-1)
 # 5] Blend :----------------
 
 Overlay = img.copy()
-img_2 = cv2.imread("img_2.jpg")
+img_2 = cv2.imread("img_9.jpg")
 resize_img_2 = cv2.resize(img_2,(W,H))
 blend_1 = cv2.addWeighted(Overlay,0.25,resize_img_2,0.75,0)
 blend_2 = cv2.addWeighted(Overlay,0.5,resize_img_2,0.5,0)
