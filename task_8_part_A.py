@@ -52,7 +52,6 @@ gaussian = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRE
 
 adaptive = [("Original", img),("Mean", mean),("Gaussian", gaussian)]
 
-#plt.figure(figsize=(9,3))
 
 for i, (title, image) in enumerate(adaptive):
 
