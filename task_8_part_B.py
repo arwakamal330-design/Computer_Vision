@@ -25,7 +25,7 @@ def validate_mask(mask):
     print("------------------")
 
 
-# Camera
+
 
 cap = cv2.VideoCapture(0)
 
@@ -39,19 +39,12 @@ while True:
     if not ret:
         break
 
-    # HSV
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Mask
-
     mask = cv2.inRange(hsv, lower, upper)
 
-    # Result
-
     result = cv2.bitwise_and(frame, frame, mask=mask)
-
-    # Validate
 
     validate_mask(mask)
 
@@ -61,7 +54,7 @@ while True:
     cv2.imshow("Mask", mask)
     cv2.imshow("Result", result)
 
-    # Exit
+ 
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
