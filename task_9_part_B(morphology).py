@@ -25,16 +25,16 @@ def validate_mask(mask):
         print("FAIL")
 
 
-# Camera
+
 
 cap = cv2.VideoCapture(0)
 
-# HSV Range
+
 
 lower = np.array([0, 50, 50])
 upper = np.array([60, 255, 255])
 
-# Kernel
+
 
 kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
 
@@ -45,11 +45,11 @@ while True:
     if not ret:
         break
 
-    # HSV
+    
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Mask
+    
 
     mask = cv2.inRange(hsv, lower, upper)
 
@@ -65,7 +65,7 @@ while True:
 
     result = cv2.bitwise_and(frame, frame, mask=clean_mask)
 
-    # Validate
+  
 
     validate_mask(clean_mask)
 
