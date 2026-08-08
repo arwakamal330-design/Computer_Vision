@@ -10,6 +10,7 @@ print (f'[original image: Height, Weight, Channels]:{img.shape}') # (367, 550, 3
 
 roi = img[100:270,100:450].copy()
 
+print (f'[roi]:{img.shape}')
 # 2] Resize :------------------
 
 resize_1 = cv2.resize(img,(W//2,H//2),interpolation=cv2.INTER_AREA)
@@ -46,30 +47,23 @@ blend_2 = cv2.addWeighted(Overlay,0.5,resize_img_2,0.5,0)
 blend_3 = cv2.addWeighted(Overlay,0.75,resize_img_2,0.25,0)
 
 # 6] binary mask :---------
+
 img_3 = cv2.imread("img_8.jpg")
 resize_img_3 = cv2.resize(img_3,(W,H))
 
-hsv = cv2.cvtColor(resize_img_3,cv2.COLOR_BGR2HSV)
+mask = np.zeros((H,W), dtype=np.uint8)
 
-Lower_red = np.array([0,50,50])
-Upper_red = np.array([20,255,255])
+cv2.rectangle(mask, (100,100), (300,300), 255, -1)
 
-Lower_blue_red = np.array([90,50,50])
-Upper_blue_red = np.array([179,255,255])
-
-
-mask_1 = cv2.inRange(hsv,Lower_red,Upper_red)
-mask_2 = cv2.inRange(hsv,Lower_blue_red,Upper_blue_red)
-
-mask = cv2.bitwise_or(mask_1,mask_2)
+cv2.circle(mask, (450,250), 100, 255, -1)
 
 mask_inv = cv2.bitwise_not(mask)
 
-forground = cv2.bitwise_and(resize_img_3,resize_img_3,mask=mask)
-background = cv2.bitwise_and(img,img,mask=mask_inv)
+foreground = cv2.bitwise_and(resize_img_3, resize_img_3, mask=mask)
 
+background = cv2.bitwise_and(img, img, mask=mask_inv)
 
-final = cv2.add(background,forground)
+final = cv2.add(background, foreground)
 
 
 # Display Photos and Save ========================================================
